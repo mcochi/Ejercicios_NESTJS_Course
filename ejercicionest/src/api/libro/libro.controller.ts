@@ -1,23 +1,30 @@
 import { Controller, Get , Post, Body, Param, Put, Delete} from '@nestjs/common';
 import {Libro} from './libro'
 import { LibroSinId } from './libro-sin-id'
+import { RestService } from '../rest/rest.service'; // Importamos el servicio para que lo pueda usar el controlador
 
 @Controller('libro')
 export class LibroController {
 
+  private _id = 0;
+
+  constructor(private readonly restservice: RestService) {} //Hacemos la inyeccción de dependiencia para que pueda llegar al servicio
+
   @Get() //Listado de libros. Devuelve un array de libros
   findAll(): Libro[] {
-    return [];
+    return this.restservice.getData();
   }
 
   @Post() // Añadir un libro, devuelvo un libro
   //El createlibro es el nombre que le doy al payload que me mandan
   addOne(@Body() createlibro : LibroSinId) : Libro {
     const devuelvolibro = new Libro();
-    devuelvolibro.id = 1;
+    devuelvolibro.id = this._id;
     devuelvolibro.titulo = createlibro.titulo;
     devuelvolibro.autor = createlibro.autor;
     devuelvolibro.fecha = createlibro.fecha;
+    this.restservice.addLibro(devuelvolibro);
+    this._id++;
     return devuelvolibro;
   }
 
