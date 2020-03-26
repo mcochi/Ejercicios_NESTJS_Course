@@ -1,14 +1,25 @@
 import { Injectable } from '@nestjs/common';
 import {Libro} from '../libro/libro'
-//import { LibroSinId } from './libro-sin-id'
+import { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
+import { LibroSinId } from '../libro/libro-sin-id'
 
 @Injectable()
 export class RestService {
-  public libros: Libro [] = [];
-
-  constructor() {
+  private libros: Libro[];
+  constructor(@InjectModel('Libro') private readonly modelo: Model<LibroSinId>) {
     this.libros = [];
   }
+
+  async findAll() : Promise<LibroSinId[]> {
+    return await this.modelo.find().exec();
+  }
+
+  async insertDoc(document : LibroSinId) : Promise<LibroSinId> {
+    const createdLibro = new this.modelo(document);
+    return await createdLibro.save();
+  }
+
   getData(): Libro[] {
     return this.libros;
   }
