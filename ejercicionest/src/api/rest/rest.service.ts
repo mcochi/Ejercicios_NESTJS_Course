@@ -27,4 +27,19 @@ export class RestService {
   addLibro(libro : Libro) {
     this.libros.push(libro);
   }
+  async findById(id: string):Promise<LibroSinId> {
+    return await this.modelo.findById(id);
+  }
+
+  async updateById(id:string, libro: LibroSinId) : Promise<LibroSinId> {
+    const cambios = {titulo: libro.titulo, autor: libro.autor, fecha: libro.fecha};
+    await this.modelo.updateOne({_id:id}, cambios);
+    return await this.modelo.findById(id);
+  }
+
+  async delete(id: string): Promise<LibroSinId> {
+    const libroaborrar = await this.modelo.findById(id);
+    await this.modelo.findOneAndRemove({_id:id});
+    return libroaborrar;
+  }
 }

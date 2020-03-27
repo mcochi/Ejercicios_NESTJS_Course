@@ -34,19 +34,22 @@ export class LibroController {
     return devuelvolibro;
   }*/
 
-  @Get('/:id')//Obtener un libro devuelve un libros
-  getById(@Param() params): Libro {
+  @Get('/:_id')//Obtener un libro devuelve un libros
+  getById(@Param() params): Promise<LibroSinId> {
     // Capturar e id y consultar a la BBDD
-    const libroconsultado = new Libro();
+    /*const libroconsultado = new Libro();
     libroconsultado.id = params.id;
     libroconsultado.titulo = 'La sombra del viento';
     libroconsultado.autor = 'Carlos Ruiz Zafón';
     libroconsultado.fecha= '20-04-2007';
     return libroconsultado;
-  }
+  }*/
+  return this.restservice.findById(params._id);
+}
 
-  @Put('/:id') // modificar un objeto, devuelve el objeto
-  modifyById(@Param() params,
+  @Put('/:_id') // modificar un objeto, devuelve el objeto
+  async update(@Param() params, @Body() updateDto: LibroSinId): Promise<LibroSinId> {
+  /*modifyById(@Param() params,
              @Body() updateDto: LibroSinId): Libro {
     // Capturar el id y buscarlo en la BBDD y luego guardar los cambios
     const LibroaModificar = new Libro();
@@ -55,10 +58,15 @@ export class LibroController {
     LibroaModificar.autor = updateDto.autor;
     LibroaModificar.fecha = updateDto.fecha;
     return LibroaModificar;
+  }*/
+      return this.restservice.updateById(params._id,updateDto);
   }
 
-  @Delete('/:id') // borrar
-  deleteById(@Param() params): Libro {
+  @Delete('/:_id') // borrar
+  remove (@Param() params): Promise<LibroSinId> {
+    return this.restservice.delete(params._id);
+  }
+  /*deleteById(@Param() params): Libro {
     // coger el id consultar a la bbdd y luego borrar el objeto
     const LibroaBorrar = new Libro();
     LibroaBorrar.id = params.id;
@@ -66,6 +74,6 @@ export class LibroController {
     LibroaBorrar.autor = 'Kazuo Ishiguro';
     LibroaBorrar.fecha = '20-06-2016'
     return LibroaBorrar;
-  }
+  }*/
 
 }

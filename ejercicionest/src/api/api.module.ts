@@ -12,6 +12,6 @@ import { LibroSchema } from './schema/libro.schema';
   imports: [
       MongooseModule.forFeature([{
         name: 'Libro',
-        schema: LibroSchema }])],
+        schema: LibroSchema }])],// Podríamos añadir collection: '<Nombre de la colección', sino crea la colección nombre+s, en nuestro caso libro+s: libros
 })
 export class ApiModule {}
