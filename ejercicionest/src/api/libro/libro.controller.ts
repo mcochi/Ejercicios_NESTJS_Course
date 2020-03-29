@@ -1,7 +1,8 @@
-import { Controller, Get , Post, Body, Param, Put, Delete} from '@nestjs/common';
+import { Controller, Get , Post, Body, Param, Put, Delete, UseGuards} from '@nestjs/common';
 import {Libro} from './libro'
 import { LibroSinId } from './libro-sin-id'
 import { RestService } from '../rest/rest.service'; // Importamos el servicio para que lo pueda usar el controlador
+import { JwtAuthGuard } from '../../auth/jwt-auth.guard';
 
 @Controller('libro')
 export class LibroController {
@@ -10,6 +11,7 @@ export class LibroController {
 
   constructor(private readonly restservice: RestService) {} //Hacemos la inyeccción de dependiencia para que pueda llegar al servicio
 
+  @UseGuards(JwtAuthGuard)
   @Get() //Listado de libros. Devuelve un array de libros
   async findAll(): Promise<LibroSinId[]> {
     return this.restservice.findAll();
@@ -18,6 +20,7 @@ export class LibroController {
     return this.restservice.getData();
   }*/
 
+  @UseGuards(JwtAuthGuard)
   @Post() // Añadir un libro, devuelvo un libro
   //El createlibro es el nombre que le doy al payload que me mandan
   async addOne(@Body() createlibro : LibroSinId) : Promise<LibroSinId> {
@@ -34,6 +37,7 @@ export class LibroController {
     return devuelvolibro;
   }*/
 
+  @UseGuards(JwtAuthGuard)
   @Get('/:_id')//Obtener un libro devuelve un libros
   getById(@Param() params): Promise<LibroSinId> {
     // Capturar e id y consultar a la BBDD
@@ -47,6 +51,7 @@ export class LibroController {
   return this.restservice.findById(params._id);
 }
 
+  @UseGuards(JwtAuthGuard)
   @Put('/:_id') // modificar un objeto, devuelve el objeto
   async update(@Param() params, @Body() updateDto: LibroSinId): Promise<LibroSinId> {
   /*modifyById(@Param() params,
@@ -61,7 +66,8 @@ export class LibroController {
   }*/
       return this.restservice.updateById(params._id,updateDto);
   }
-
+  
+  @UseGuards(JwtAuthGuard)
   @Delete('/:_id') // borrar
   remove (@Param() params): Promise<LibroSinId> {
     return this.restservice.delete(params._id);
