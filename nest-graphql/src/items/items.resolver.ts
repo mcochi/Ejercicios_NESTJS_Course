@@ -12,6 +12,7 @@ export class ItemsResolver {
       return this.itemsService.findAll();
     }
 
+
     @Query(() => ItemType)
     async findOne(@Args('id') id: string): Promise<ItemType> {
       return this.itemsService.findOne(id);
