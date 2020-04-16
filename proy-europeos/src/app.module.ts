@@ -8,7 +8,7 @@ import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/Proyectos_Europeos',{ useNewUrlParser: true, useUnifiedTopology: true }),
+    MongooseModule.forRoot('mongodb://localhost:27017/Contabilidad_trimestral',{ useNewUrlParser: true, useUnifiedTopology: true }),
     CallsModule,
   ],
   controllers: [AppController],

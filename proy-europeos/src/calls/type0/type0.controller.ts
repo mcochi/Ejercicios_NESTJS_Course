@@ -5,7 +5,7 @@ import { Type0serviceService } from './type0service/type0service.service';
 
 
 
-@Controller('type0')
+@Controller('contabilidad_trimestral')
 export class Type0Controller {
     constructor(private readonly mongoService: Type0serviceService) {}
     @Get()

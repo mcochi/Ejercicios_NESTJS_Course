@@ -4,17 +4,13 @@ export const Type0Schema = new mongoose.Schema({
   /*titulo: String,
   autor: String,
   fecha: String*/
-  type: Number,
-  ccm2Id:Number,
-  cftId:Number,
-  identifier: String,
-  title: String,
-  deadlineDatesLong: [],
-  url: String,
-  status: {
-      id:String,
-      abbreviation:String,
-      description:String
-  }
+  index: Number,
+  year:String,
+  trimestre:String,
+  region: [],
+  PIB:Number,
+  VABAgricultura:Number,
+  '%VABAgricultura':Number,
+  VABIndustria:Number,
 }
 )

@@ -11,7 +11,7 @@ import { MongooseModule } from '@nestjs/mongoose';
     imports:[
         MongooseModule.forFeature([
             {
-                name: 'Type0',
+                name: 'region',
                 schema: Type0Schema 
             },
             {
