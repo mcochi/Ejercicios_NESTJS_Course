@@ -5,7 +5,7 @@ export class Loraobj {
         autor: string;
         fecha: string;
 */
-        lumen: Number;
-        presion: Number;
+        longitud: String;
+        latitud: String;
         InsertedDate : Date;        
 }

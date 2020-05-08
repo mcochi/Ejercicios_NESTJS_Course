@@ -6,7 +6,7 @@ import { Loraobj } from '../Loraobj';
 
 @Injectable()
 export class LoraService {
-    constructor(@InjectModel('lora') private readonly modelo: Model<Loraobj>) {}
+    constructor(@InjectModel('coordinate') private readonly modelo: Model<Loraobj>) {}
     
     async findAll(): Promise<Loraobj[]> {
         return await this.modelo.find().limit(2).exec();

@@ -4,8 +4,8 @@ export const LoraSchema = new mongoose.Schema({
   /*titulo: String,
   autor: String,
   fecha: String*/
-  lumen: Number,
-  presion: Number,
+  longitud: String,
+  latitud: String,
   InsertedDate : Date,
 },
 {

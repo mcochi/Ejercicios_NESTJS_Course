@@ -21,7 +21,7 @@ import { LoraService } from './lora/lora/lora.service';
                 schema: Type1Schema 
             },
             {
-                name: 'lora',
+                name: 'coordinate',
                 schema: LoraSchema
             }
         ]),
