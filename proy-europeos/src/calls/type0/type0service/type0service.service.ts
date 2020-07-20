@@ -9,7 +9,7 @@ export class Type0serviceService {
     constructor(@InjectModel('region') private readonly modelo: Model<Type0obj>) {}
     
     async findAll(): Promise<Type0obj[]> {
-        return await this.modelo.find().limit(2).exec();
+        return await this.modelo.find().exec();
     }
     async create(call: Type0obj): Promise<Type0obj> {
         const createdcall = new this.modelo(call);
