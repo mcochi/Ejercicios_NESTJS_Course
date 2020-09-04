@@ -1,0 +1,1 @@
+{"version":3,"file":"libro.schema.js","sourceRoot":"","sources":["../../../src/sri/schema/libro.schema.ts"],"names":[],"mappings":";;AAAA,qCAAqC;AAExB,QAAA,WAAW,GAAG,IAAI,QAAQ,CAAC,MAAM,CAAC;IAC7C,MAAM,EAAE,MAAM;IACd,IAAI,EAAE,MAAM;IACZ,aAAa,EAAE,MAAM;IACrB,YAAY,EAAE,MAAM;IACpB,WAAW,EAAE,MAAM;IACnB,WAAW,EAAE,MAAM;IACnB,UAAU,EAAE,MAAM;IAClB,SAAS,EAAE,MAAM;CAClB,CAAC,CAAA"}
